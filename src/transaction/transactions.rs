@@ -10,7 +10,6 @@ use crate::pedersen;
 #[derive(Debug, Clone)]
 //// Represents a transaction with a Pedersen commitment
 pub struct Transaction {
-
     pub commitment: RistrettoPoint,
 }
 
@@ -24,10 +23,7 @@ impl Transaction {
         let blinding = Scalar::from_bytes_mod_order(random_bytes);
         let commitment = pc.commit(amount, &blinding);
 
-        Transaction {
-            
-            commitment,
-        }
+        Transaction { commitment }
     }
 }
 
@@ -44,13 +40,14 @@ impl TransactionLedger {
 
         TransactionLedger { transactions, tree }
     }
-//// Returns the root hash of the Merkle tree as a hex string
+    //// Returns the root hash of the Merkle tree as a hex string
     pub fn root_hash(&self) -> String {
         hex::encode(self.tree.root_hash())
     }
-///checks whether a commitment is present in merkle tree
-    pub fn find_transaction(&self, commitment: &RistrettoPoint) -> bool{
-        let r=self.transactions
+    ///checks whether a commitment is present in merkle tree
+    pub fn find_transaction(&self, commitment: &RistrettoPoint) -> bool {
+        let r = self
+            .transactions
             .iter()
             .position(|tx| &tx.commitment == commitment);
         match r {

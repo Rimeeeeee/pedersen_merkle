@@ -16,7 +16,7 @@ pub enum MerkleNode {
         /// Right child node
         right: Box<MerkleNode>,
         /// Hash of the concatenated hashes of the left and right child nodes
-        hash: [u8; 64], 
+        hash: [u8; 64],
     },
 }
 //// Represents a Merkle tree with a root node
@@ -44,7 +44,7 @@ impl MerkleTree {
                 let right = if pair.len() == 2 {
                     pair[1].clone()
                 } else {
-                    pair[0].clone() 
+                    pair[0].clone()
                 };
 
                 let combined_hash = MerkleTree::hash_nodes(&left, &right);
@@ -74,7 +74,7 @@ impl MerkleTree {
         hash_array.copy_from_slice(&hash_bytes[..64]);
         hash_array
     }
-//// Returns the hash bytes of a Merkle node
+    //// Returns the hash bytes of a Merkle node
     fn node_hash_bytes(node: &MerkleNode) -> Vec<u8> {
         match node {
             MerkleNode::Leaf(pt) => pt.compress().as_bytes().to_vec(),
@@ -121,7 +121,6 @@ mod tests {
         let merkle_tree = MerkleTree::new(commitments.clone());
         let root = merkle_tree.root_hash();
 
-        
         let merkle_tree2 = MerkleTree::new(commitments);
         let root2 = merkle_tree2.root_hash();
 
@@ -149,7 +148,6 @@ mod tests {
         let tree = MerkleTree::new(commitments.clone());
         let root = tree.root_hash();
 
-        
         let tree2 = MerkleTree::new(commitments);
         assert_eq!(root, tree2.root_hash());
     }
@@ -159,7 +157,6 @@ mod tests {
         let mut commitments = create_test_commitments(3);
         let root1 = MerkleTree::new(commitments.clone()).root_hash();
 
-       
         commitments.swap(0, 1);
         let root2 = MerkleTree::new(commitments).root_hash();
 

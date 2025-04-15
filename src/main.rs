@@ -1,8 +1,8 @@
-use transaction::transactions::{Transaction, TransactionLedger};
 use curve25519_dalek::ristretto::RistrettoPoint;
 use rand::Rng;
 use std::env;
 use std::str::FromStr;
+use transaction::transactions::{Transaction, TransactionLedger};
 mod merkle;
 mod pedersen;
 mod transaction;
@@ -19,18 +19,15 @@ fn create_test_commitments_for_merkle_tree(count: usize) -> Vec<RistrettoPoint> 
         .collect()
 }
 //helper fxn to create test commitments for transaction
-fn create_test_commitments_for_transaction(count:usize)->Vec<Transaction>{
-    
+fn create_test_commitments_for_transaction(count: usize) -> Vec<Transaction> {
     let mut rng = rand::rng();
     (0..count)
         .map(|_i| {
-            
             let random_value = rng.random_range(0..u64::MAX) as u64;
             Transaction::new(random_value)
         })
         .collect()
 }
-
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -89,7 +86,10 @@ fn main() {
             let tx1 = Transaction::new(42);
             let tx2 = Transaction::new(99);
             let ledger = TransactionLedger::new(vec![tx1.clone(), tx2.clone()]);
-            println!("Initial Merkle Root Hash from ledger: {}", ledger.root_hash());
+            println!(
+                "Initial Merkle Root Hash from ledger: {}",
+                ledger.root_hash()
+            );
 
             let index = ledger.find_transaction(&tx2.commitment);
             println!("Tx2 is at index from ledger: {:?}", index);
@@ -98,9 +98,15 @@ fn main() {
             let r = Transaction::new(value);
             txs.push(r.clone());
             let x = TransactionLedger::new(txs);
-            println!("Transaction Ledger for randomized values: {:?}", x.transactions);
+            println!(
+                "Transaction Ledger for randomized values: {:?}",
+                x.transactions
+            );
             let root = x.root_hash();
-            println!("Transaction Ledger Merkle Root Hash for randomized values: {}", root);
+            println!(
+                "Transaction Ledger Merkle Root Hash for randomized values: {}",
+                root
+            );
             let presence = x.find_transaction(&r.commitment);
             println!("Transaction is present in ledger: {:?}", presence);
         }

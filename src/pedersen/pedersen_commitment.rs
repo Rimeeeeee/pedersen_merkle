@@ -1,10 +1,10 @@
 use curve25519_dalek::constants::RISTRETTO_BASEPOINT_POINT;
-use curve25519_dalek::ristretto:: RistrettoPoint;
+use curve25519_dalek::ristretto::RistrettoPoint;
 use curve25519_dalek::scalar::Scalar;
 use rand::TryRngCore;
 use rand::rngs::OsRng;
 use sha2::{Digest, Sha512};
-///this module implements the Pedersen commitment scheme using Ristretto points which serves 
+///this module implements the Pedersen commitment scheme using Ristretto points which serves
 /// as the commitment as leaves to the merkle tree.
 pub struct PedersenCommitment {
     // G (base point)
@@ -14,9 +14,8 @@ pub struct PedersenCommitment {
 }
 
 impl PedersenCommitment {
-    //uses hash-to-curve 
+    //uses hash-to-curve
     pub fn new() -> Self {
-        
         let g = RISTRETTO_BASEPOINT_POINT;
 
         let mut hasher = Sha512::new();
@@ -38,7 +37,7 @@ impl PedersenCommitment {
     pub fn random_blinding(&self) -> Scalar {
         let mut rng = OsRng;
         let mut random_bytes = [0u8; 32];
-        let _u=rng.try_fill_bytes(&mut random_bytes);
+        let _u = rng.try_fill_bytes(&mut random_bytes);
         Scalar::from_bytes_mod_order(random_bytes)
     }
     #[allow(dead_code)]
@@ -62,10 +61,8 @@ mod tests {
 
         let commitment = pc.commit(value, &blinding);
 
-      
         assert!(pc.verify(&commitment, value, &blinding));
 
-       
         assert!(!pc.verify(&commitment, value + 1, &blinding));
         assert!(!pc.verify(&commitment, value, &pc.random_blinding()));
     }
@@ -82,7 +79,6 @@ mod tests {
         let r2 = pc.random_blinding();
         let c2 = pc.commit(v2, &r2);
 
-       
         let v_sum = v1 + v2;
         let r_sum = r1 + r2;
         let c_sum = c1 + c2;
