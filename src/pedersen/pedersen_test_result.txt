@@ -1,0 +1,15 @@
+Compiling pederson_merkle v0.1.0 (C:\Users\Anjan\Desktop\pederson_merkle)
+    Finished `test` profile [unoptimized + debuginfo] target(s) in 0.72s
+    
+
+running 2 tests
+test pederson::pederson_commitment::tests::test_homomorphic_property ... ok
+test pederson::pederson_commitment::tests::test_pedersen_commitment ... ok
+
+successes:
+
+successes:
+    pederson::pederson_commitment::tests::test_homomorphic_property
+    pederson::pederson_commitment::tests::test_pedersen_commitment
+
+test result: ok. 2 passed; 0 failed; 0 ignored; 0 measured; 4 filtered out; finished in 0.06s

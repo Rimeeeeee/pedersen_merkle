@@ -1,0 +1,20 @@
+ Finished `test` profile [unoptimized + debuginfo] target(s) in 0.04s
+    
+
+running 4 tests
+test merkle::merkle_tree::tests::test_merkle_tree_with_single_commitment ... ok
+test merkle::merkle_tree::tests::test_merkle_tree_root_changes_on_leaf_order_change ... ok
+test merkle::merkle_tree::tests::test_merkle_tree_with_odd_number_of_commitments ... ok
+test merkle::merkle_tree::tests::test_merkle_tree_root_from_pedersen_commitments ... ok
+
+successes:
+
+successes:
+    merkle::merkle_tree::tests::test_merkle_tree_root_changes_on_leaf_order_change
+    merkle::merkle_tree::tests::test_merkle_tree_root_from_pedersen_commitments
+    merkle::merkle_tree::tests::test_merkle_tree_with_odd_number_of_commitments
+    merkle::merkle_tree::tests::test_merkle_tree_with_single_commitment
+
+test result: ok. 4 passed; 0 failed; 0 ignored; 0 measured; 2 filtered out; finished in 0.07s
+
+ *  Terminal will be reused by tasks, press any key to close it. 
