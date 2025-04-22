@@ -1,6 +1,6 @@
 cargo run -- ledger 6 5
     Finished `dev` profile [unoptimized + debuginfo] target(s) in 0.03s
-     Running `C:\Users\Anjan\Desktop\reth\target\debug\pederson_merkle.exe ledger 6 5`
+     Running 
 Initial Merkle Root Hash from ledger: f63f9c4ffb82b43d574fbbe6cfdadf06c04c12f15439bdc9b2bfa9e6a28accfa0b1f51c294b25ceb23916834eab3757b2aa9c012937e2cbdd59e7294227b660f
 Tx2 is at index from ledger: true
 Transaction Ledger for randomized values: [Transaction { commitment: RistrettoPoint: coset 
